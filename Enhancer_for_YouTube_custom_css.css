@@ -1,0 +1,218 @@
+/* Enhancer for YouTube extension custom CSS
+llamatar
+2024-08-08_21:25:42
+*/
+
+/* Variables */
+:root {
+	--videos-per-row: 6;
+}
+
+
+/*========== Video page ==========*/
+
+/*---------- Video player ----------*/
+/* Player controls: Remove various buttons */
+/* Autoplay */
+button.ytp-button[data-tooltip-target-id="ytp-autonav-toggle-button"],
+/* Picture-in-picture */
+#movie_player div.ytp-chrome-controls button.ytp-pip-button.ytp-button,
+/* Miniplayer */
+button.ytp-miniplayer-button,
+/* Theater mode */
+button.ytp-size-button,
+/* Play on TV */
+button.ytp-remote-button,
+/* Full screen */
+button.ytp-fullscreen-button {
+	display: none !important;
+}
+
+/* Live chat: Increased height, Decrease padding */
+#chat:not([collapsed]) {
+	height: calc(100vh - 56px) !important;
+}
+#columns #secondary.ytd-watch-flexy {
+	padding-top: 0 !important;
+	padding-right: 4px !important;
+}
+
+/*---------- Video metadata section ----------*/
+/* Title bar: Decrease margins */
+#clarify-box.ytd-watch-flexy {
+	margin: 0 !important;
+}
+.item.ytd-watch-metadata {
+	margin: 0 !important;
+}
+#flexible-item-buttons.ytd-menu-renderer:not(:empty)>yt-button-view-model.ytd-menu-renderer {
+	margin-left: 0 !important;
+}
+
+/* Video metadata actions: Remove various buttons */
+/* YouTube Premium Download */
+ytd-download-button-renderer,
+/* Super Thanks */
+button.yt-spec-button-shape-next--mono.yt-spec-button-shape-next--tonal[aria-label="Thanks"],
+/* Clip */
+button.yt-spec-button-shape-next--mono.yt-spec-button-shape-next--tonal[aria-label="Clip"] {
+	display: none !important;
+}
+
+/*---------- Comment section ----------*/
+/* Comment section header: Decrease margins */
+ytd-watch-metadata.ytd-watch-flexy {
+	margin: 0 !important;
+}
+ytd-comments-header-renderer {
+	margin: 0 !important;
+}
+#title.ytd-comments-header-renderer {
+	margin: 0 !important;
+}
+
+/* Comment: Decrease margin */
+ytd-comment-thread-renderer {
+	margin: 0 !important;
+}
+
+/* Action buttons: Decrease height and margin */
+.yt-spec-button-shape-next--size-s {
+	height: auto !important;
+}
+ytd-comment-engagement-bar {
+	margin: 0 !important;
+}
+
+/* More replies button: Decrease height */
+#more-replies,
+#less-replies {
+	height: 24px !important;
+}
+
+/*---------- Related videos ----------*/
+/* Related top bar: Decrease margin */
+ytd-watch-flexy[full-bleed-player] #secondary.ytd-watch-flexy {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+/* Video titles: Decrease margin and padding */
+#video-title.ytd-compact-video-renderer {
+	margin: 0 !important;
+	height: 5.4rem !important;
+}
+.metadata.ytd-compact-video-renderer {
+	padding: 0 !important;
+}
+
+/* Video options button: Lower */
+ytd-menu-renderer.ytd-compact-video-renderer {
+	top: 3.6rem !important;
+}
+
+/* Shorts shelf: Remove */
+ytd-reel-shelf-renderer.ytd-item-section-renderer {
+	display: none !important;
+}
+
+
+/*========== Subscriptions page & Home page ==========*/
+
+/*---------- Video grid ----------*/
+/* Grid: Increased videos per row, Decrease padding */
+#contents.ytd-rich-grid-renderer {
+	--ytd-rich-grid-items-per-row: var(--videos-per-row) !important;
+	padding: 0 !important;
+}
+ytd-rich-grid-renderer.ytd-two-column-browse-results-renderer {
+	--ytd-rich-grid-items-per-row: var(--videos-per-row) !important;
+}
+ytd-rich-item-renderer[rendered-from-rich-grid][is-in-first-column] {
+	margin-left: calc(var(--ytd-rich-grid-item-margin) / 2) !important;
+}
+
+/* Latest top bar: Decrease margins */
+.grid-subheader {
+	margin-top: 0 !important;
+}
+#contents.ytd-shelf-renderer {
+	margin: 0 !important;
+}
+
+/*----------- Video -----------*/
+/* Video: Decrease margins */
+ytd-rich-item-renderer.ytd-rich-grid-renderer {
+	margin-bottom: calc(var(--ytd-rich-grid-item-margin) / 2) !important;
+}
+h3.ytd-rich-grid-media {
+	margin: 4px 0 0 0 !important
+}
+
+/* Video title: Set size */
+#video-title.ytd-rich-grid-media {
+	font-size: 1.4rem !important;
+	line-height: 1.8rem !important;
+	max-height: 5.4rem !important;
+	height: 5.4rem !important;
+	-webkit-line-clamp: 3 !important;
+}
+
+#meta.ytd-rich-grid-media {
+	padding: 0 !important;
+}
+
+/* Video options button: Lower */
+ytd-menu-renderer.ytd-rich-grid-media {
+	top: 5.4rem !important;
+}
+
+/* Avatar: Decrease margins, made avatar link clickable */
+#avatar-container.ytd-rich-grid-media {
+	margin-top: 4px !important;
+	margin-right: 4px !important;
+}
+#avatar-link.ytd-rich-grid-media {
+	display: inline-block !important;
+}
+#decorated-avatar.ytd-rich-grid-media {
+	display: none !important;
+}
+
+/* Upcoming livestream Notify me button: Remove */
+#buttons.ytd-rich-grid-media {
+	display: none !important;
+}
+
+/*---------- Shorts and community posts ----------*/
+/* Shorts section (Subscriptions): Remove */
+ytd-browse[page-subtype="subscriptions"] ytd-rich-section-renderer.ytd-rich-grid-renderer {
+	display: none !important;
+}
+
+/* Shelves: Decrease margins and padding */
+/*	#rich-shelf-header-container { display: none !important; } */
+#dismissible.ytd-rich-shelf-renderer {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+/* Shorts thumbnail: Decrease height */
+ytd-thumbnail.ytd-rich-grid-slim-media {
+	height: 10vh !important;
+}
+
+/* Show more button: Remove */
+.button-container.ytd-rich-shelf-renderer {
+	display: none !important;
+}
+
+
+/*=========== Channel page ===========*/
+
+/* Filter bar: Decrease margin */
+ytd-feed-filter-chip-bar-renderer[component-style=FEED_FILTER_CHIP_BAR_STYLE_TYPE_CHANNEL_PAGE_GRID] {
+	margin: 0 !important;
+}
+
+/*  */
