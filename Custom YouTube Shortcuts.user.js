@@ -9,6 +9,8 @@
 // @icon        https://icons.duckduckgo.com/ip2/youtube.com.ico
 // ==/UserScript==
 
+// 2025-04-21_20:59:06
+
 const log = (...inputs) => console.log("[Custom YouTube Shortcuts]:", ...inputs);
 const DEFAULT_TOAST_TIME = 1000;
 const MIN_SPEED = 0.5;
@@ -38,7 +40,7 @@ function interruptKeys(event) {
 		case "o": adjustTime(+1); break;
 		case "p": adjustTime(+3); break;
 
-		case "w": copyTimeToClipboard(); break;
+		case "w": copyTimestampLinkToClipboard(); break;
 
 		case "a": adjustSpeed(-0.5); break;
 		case "s": resetSpeed(); break;
@@ -59,10 +61,9 @@ function interruptKeys(event) {
 	event.stopPropagation();
 }
 
-function copyTimeToClipboard() {
-	let copyText = Math.floor(video.currentTime);
+function copyTimestampLinkToClipboard() {
+	let copyText = window.location.href + "&t=" + Math.floor(video.currentTime);
 	GM_setClipboard(copyText);
-	//document.execCommand("paste");
 }
 
 function setVideo() {
