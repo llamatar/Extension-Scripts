@@ -1,7 +1,10 @@
 (video, objectType) => {
+	// 2024-10-03_16:36:50
 	const blockRelatedVideosWithLessThanViews = 0;
 	const blockVideosWatchedMoreThanPercentage = 75;
-	const allowVideosPublishedYearsAgo = 10;
+	const allowVideosPublishedYearsAgo = 4;
+  
+  	//console.log(video);
 
 	// Allow videos except on certain pages
 	const blockablePages = [
@@ -18,7 +21,7 @@
 		&& typeof video.viewCount !== "undefined"
 		&& (isNaN(video.viewCount)
 			|| video.viewCount < blockRelatedVideosWithLessThanViews)) {
-		console.log(`[BlockTube]: ${video.viewCount} < ${blockRelatedVideosWithLessThanViews} views, ${video.title}`, videok);
+		console.log(`[BlockTube]: ${video.viewCount} < ${blockRelatedVideosWithLessThanViews} views, ${video.title}`, video);
 		return true;
 	}
 

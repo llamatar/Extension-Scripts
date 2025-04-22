@@ -1,11 +1,13 @@
 /* Enhancer for YouTube extension custom CSS
 llamatar
-2024-08-08_21:25:42
+2025-03-12_14:58:28
 */
 
 /* Variables */
 :root {
 	--videos-per-row: 6;
+	--community-posts-per-row: 4;
+	--channel-name-color: #409de8;
 }
 
 
@@ -16,7 +18,7 @@ llamatar
 /* Autoplay */
 button.ytp-button[data-tooltip-target-id="ytp-autonav-toggle-button"],
 /* Picture-in-picture */
-#movie_player div.ytp-chrome-controls button.ytp-pip-button.ytp-button,
+#movie_player div.ytp-chrome-controls div.ytp-right-controls button.ytp-pip-button.ytp-button,
 /* Miniplayer */
 button.ytp-miniplayer-button,
 /* Theater mode */
@@ -50,6 +52,7 @@ button.ytp-fullscreen-button {
 }
 
 /* Video metadata actions: Remove various buttons */
+/* NOTE: Can't remove element based on child text, so some list buttons can't be removed. */
 /* YouTube Premium Download */
 ytd-download-button-renderer,
 /* Super Thanks */
@@ -108,7 +111,7 @@ ytd-watch-flexy[full-bleed-player] #secondary.ytd-watch-flexy {
 
 /* Video options button: Lower */
 ytd-menu-renderer.ytd-compact-video-renderer {
-	top: 3.6rem !important;
+	top: 6rem !important;
 }
 
 /* Shorts shelf: Remove */
@@ -118,6 +121,11 @@ ytd-reel-shelf-renderer.ytd-item-section-renderer {
 
 
 /*========== Subscriptions page & Home page ==========*/
+
+/*---------- Side navigation bar ----------*/
+ytd-mini-guide-entry-renderer[aria-label="Shorts"] {
+	display: none !important;
+}
 
 /*---------- Video grid ----------*/
 /* Grid: Increased videos per row, Decrease padding */
@@ -149,13 +157,23 @@ h3.ytd-rich-grid-media {
 	margin: 4px 0 0 0 !important
 }
 
+yt-thumbnail-overlay-badge-view-model {
+	display: none !important;
+}
+ytm-paid-content-overlay-renderer {
+	display: none !important;
+}
+
 /* Video title: Set size */
-#video-title.ytd-rich-grid-media {
+.shortsLockupViewModelHostOutsideMetadataTitle,
+#video-title.ytd-rich-grid-media,
+.yt-lockup-metadata-view-model-wiz--standard .yt-lockup-metadata-view-model-wiz__title {
 	font-size: 1.4rem !important;
 	line-height: 1.8rem !important;
 	max-height: 5.4rem !important;
 	height: 5.4rem !important;
 	-webkit-line-clamp: 3 !important;
+	padding: 0 !important;
 }
 
 #meta.ytd-rich-grid-media {
@@ -163,11 +181,14 @@ h3.ytd-rich-grid-media {
 }
 
 /* Video options button: Lower */
+.yt-lockup-metadata-view-model-wiz__menu-button,
 ytd-menu-renderer.ytd-rich-grid-media {
 	top: 5.4rem !important;
+	z-index: 1000 !important;
 }
 
 /* Avatar: Decrease margins, made avatar link clickable */
+.yt-lockup-metadata-view-model-wiz__avatar,
 #avatar-container.ytd-rich-grid-media {
 	margin-top: 4px !important;
 	margin-right: 4px !important;
@@ -179,8 +200,16 @@ ytd-menu-renderer.ytd-rich-grid-media {
 	display: none !important;
 }
 
+/* Channel name: Change color */
+.yt-core-attributed-string__link,
+yt-formatted-string[dir=auto][ellipsis-truncate-styling].complex-string>*.yt-formatted-string:not(style),
+#channel-name.ytd-video-meta-block {
+	color: var(--channel-name-color) !important;
+}
+
 /* Upcoming livestream Notify me button: Remove */
-#buttons.ytd-rich-grid-media {
+#buttons.style-scope.ytd-rich-grid-media,
+.ytLockupAttachmentsViewModelHost {
 	display: none !important;
 }
 
@@ -191,10 +220,10 @@ ytd-browse[page-subtype="subscriptions"] ytd-rich-section-renderer.ytd-rich-grid
 }
 
 /* Shelves: Decrease margins and padding */
-/*	#rich-shelf-header-container { display: none !important; } */
 #dismissible.ytd-rich-shelf-renderer {
 	margin: 0 !important;
 	padding: 0 !important;
+	--ytd-rich-grid-items-per-row: var(--community-posts-per-row) !important;
 }
 
 /* Shorts thumbnail: Decrease height */
