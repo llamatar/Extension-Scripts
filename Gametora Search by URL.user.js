@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Gametora Search by URL
 // @namespace    http://tampermonkey.net/
-// @version      1.0
-// @description  Automatically filters the Umamusume skills page by a URL parameter and opens its tooltip.
+// @version      1.1
+// @description  Automatically inputs search into Gametora page with URL parameter
 // @author       llamatar
 // @match        https://gametora.com/umamusume/*
 // @grant        none
