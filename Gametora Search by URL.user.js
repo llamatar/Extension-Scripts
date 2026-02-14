@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name         Gametora Skill Search by URL
+// @name         Gametora Search by URL
 // @namespace    http://tampermonkey.net/
 // @version      1.0
 // @description  Automatically filters the Umamusume skills page by a URL parameter and opens its tooltip.
 // @author       llamatar
-// @match        https://gametora.com/umamusume/skills*
+// @match        https://gametora.com/umamusume/*
 // @grant        none
 // @run-at       document-idle
 // ==/UserScript==
@@ -18,25 +18,27 @@
     if (!searchTerm) return;
 
     function search(searchTerm) {
-        const inputElement = document.querySelector('input[placeholder*="Search by skill name"]');
+        const inputElement = document.querySelector('input[placeholder*="Search"]');
         inputElement.value = searchTerm;
 
         const reactProp = inputElement[Object.keys(inputElement).find(k => k.startsWith('__reactProps'))];
         reactProp.onChange({target: inputElement, currentTarget: inputElement, type: 'change', bubbles: true});
 
-        setTimeout(() => {
-            const intervalId = setInterval(() => {
-                const visibleSkills = document.querySelectorAll('[class*="skills_table_row_ja__"]:not([class*="skills_hidden__"])');
+        if (window.location.href.includes("skills")) {
+            setTimeout(() => {
+                const intervalId = setInterval(() => {
+                    const visibleSkills = document.querySelectorAll('[class*="skills_table_row_ja__"]:not([class*="skills_hidden__"])');
 
-                if (visibleSkills.length > 0) {
-                    const lastMore = visibleSkills[visibleSkills.length - 1].lastChild?.lastChild?.lastChild;
-                    lastMore.click();
+                    if (visibleSkills.length > 0) {
+                        const lastMore = visibleSkills[visibleSkills.length - 1].lastChild?.lastChild?.lastChild;
+                        lastMore.click();
 
-                    clearInterval(intervalId);
-                    setTimeout(adjustTooltip, 300);
-                }
+                        clearInterval(intervalId);
+                        setTimeout(adjustTooltip, 300);
+                    }
+                }, 100);
             }, 100);
-        }, 100);
+        }
     }
 
     function adjustTooltip() {
