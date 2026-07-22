@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Gametora Search by URL
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @description  Automatically inputs search into Gametora page with URL parameter
 // @author       llamatar
 // @match        https://gametora.com/umamusume/*
@@ -52,6 +52,9 @@
 
         const innerContent = document.querySelector('.tooltips_tooltip__NxFYo');
         innerContent.style.maxHeight = '100%';
+
+        const whenInherited = document.evaluate('//span[text()="When inherited"]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
+        whenInherited.click()
     }
 
     search(searchTerm);
